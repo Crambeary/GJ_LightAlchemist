@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://blurnfq2y8log"]
+
+[ext_resource type="Script" path="res://addons/scripts/enemy_melee.gd" id="1_gvscv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_altv7"]
+
+[node name="Enemy_Melee" type="CharacterBody2D"]
+script = ExtResource("1_gvscv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_altv7")
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = 11.0
+color = Color(1, 0.37, 0.37, 1)

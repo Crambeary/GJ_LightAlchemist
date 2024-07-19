@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://bbctpojrhoxcg"]
+[gd_scene load_steps=2 format=3 uid="uid://bbctpojrhoxcg"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://d3oaok3fe6vys" path="res://addons/scenes/player.tscn" id="1_5p3ka"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5p3ka")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
