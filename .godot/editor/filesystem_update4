@@ -1,5 +1,6 @@
-res://node_2d.tscn
 res://addons/scenes/player.tscn
-res://addons/scripts/player.gd
+res://node_2d.tscn
 res://addons/scenes/enemy_melee.tscn
-res://addons/scripts/enemy_melee.gd
+res://addons/scripts/hand.gd
+res://addons/scripts/camera_2d.gd
+res://addons/scripts/player.gd

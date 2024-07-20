@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 const SPEED = 200.0
@@ -11,3 +12,5 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * SPEED
 	
 	move_and_slide()
+	
+	camera_2d.offset = camera_2d.get_local_mouse_position()
