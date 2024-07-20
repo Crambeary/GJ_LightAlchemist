@@ -1,8 +1,7 @@
 extends CharacterBody2D
-@onready var camera_2d: Camera2D = $Camera2D
+@export var Projectile : PackedScene
 
-
-const SPEED = 200.0
+const SPEED = 100.0
 
 
 func _physics_process(delta: float) -> void:
@@ -13,4 +12,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	camera_2d.offset = camera_2d.get_local_mouse_position()
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
+	
+func shoot():
+	var b = Projectile.instantiate()
+	owner.add_child(b)
+	b.transform = $Hand/Sprite2D/Marker2D.global_transform

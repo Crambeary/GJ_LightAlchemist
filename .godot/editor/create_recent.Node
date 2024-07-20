@@ -1,7 +1,7 @@
+ColorRect
 CollisionShape2D
 Area2D
 Marker2D
-ColorRect
 Sprite2D
 CharacterBody2D
 Camera2D
