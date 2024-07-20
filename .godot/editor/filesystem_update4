@@ -1,4 +1,5 @@
+res://addons/scenes/enemy_melee.tscn
+res://addons/scripts/enemy_melee.gd
 res://node_2d.tscn
-res://addons/game.gd
 res://addons/scenes/player.tscn
-res://addons/scripts/player.gd
+res://addons/scenes/projectile.tscn
