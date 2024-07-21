@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbctpojrhoxcg"]
 
-[ext_resource type="PackedScene" uid="uid://d3oaok3fe6vys" path="res://addons/scenes/player.tscn" id="1_5p3ka"]
-[ext_resource type="Script" path="res://addons/game.gd" id="1_nkm52"]
-[ext_resource type="Script" path="res://addons/scripts/camera_2d.gd" id="2_6v2md"]
-[ext_resource type="PackedScene" uid="uid://blurnfq2y8log" path="res://addons/scenes/enemy_melee.tscn" id="3_ltm71"]
+[ext_resource type="Script" path="res://addons/game.gd" id="1_wb35t"]
+[ext_resource type="PackedScene" uid="uid://d3oaok3fe6vys" path="res://addons/scenes/player.tscn" id="2_81x5s"]
+[ext_resource type="Script" path="res://addons/scripts/camera_2d.gd" id="3_urvev"]
+[ext_resource type="PackedScene" uid="uid://blurnfq2y8log" path="res://addons/scenes/enemy_melee.tscn" id="4_cnd1v"]
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_nkm52")
+script = ExtResource("1_wb35t")
 
-[node name="Player" parent="." instance=ExtResource("1_5p3ka")]
+[node name="Player" parent="." instance=ExtResource("2_81x5s")]
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("target")]
@@ -20,7 +20,7 @@ drag_left_margin = 0.02
 drag_top_margin = 0.02
 drag_right_margin = 0.02
 drag_bottom_margin = 0.02
-script = ExtResource("2_6v2md")
+script = ExtResource("3_urvev")
 target = NodePath("..")
 mode = 1
 MAX_DISTANCE = 200.0
@@ -34,7 +34,7 @@ offset_right = 90.0
 offset_bottom = 21.0
 color = Color(0.662452, 0.662452, 0.662452, 1)
 
-[node name="Enemy_Melee" parent="." instance=ExtResource("3_ltm71")]
+[node name="Enemy_Melee" parent="." instance=ExtResource("4_cnd1v")]
 position = Vector2(131, -67)
 
 [connection signal="health_depleated" from="Player" to="." method="_on_player_health_depleated"]

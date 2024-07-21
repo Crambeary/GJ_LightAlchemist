@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GJ_PirateGames_LightAlchemist"
 config/description="Enter an interesting project description here!"
-run/main_scene="res://node_2d.tscn"
+run/main_scene="res://addons/scenes/levels/main_menu.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
