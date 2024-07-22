@@ -15,4 +15,3 @@ func game_over() -> void:
 
 func _on_player_health_depleated() -> void:
 	game_over()
-	pass # Replace with function body.

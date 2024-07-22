@@ -1,4 +1,5 @@
 TileMapLayer
+Node2D
 AnimationPlayer
 AnimationTree
 CanvasModulate
@@ -11,4 +12,3 @@ TextEdit
 ColorRect
 MarginContainer
 Timer
-CollisionShape2D

@@ -38,5 +38,5 @@ func melee() -> void:
 	melee_cooldown.start()
 	print("Melee")
 	Player.take_damage(2)
-	pass
+	
 	
