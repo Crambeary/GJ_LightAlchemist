@@ -1,28 +1,28 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1721675269
+::res://::1721691013
 default_env.tres::Environment::-1::1721320279::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1721622432::0::1::::<><>::
 icon.png::CompressedTexture2D::3177139061521666360::1721320279::1721622415::1::::<><>::
-::res://addons/::1721664529
-game.gd::GDScript::-1::1721664529::0::1::::<>Node2D<>::
+::res://addons/::1721680258
+game.gd::GDScript::-1::1721680258::0::1::::<>Node2D<>::
 ::res://addons/fonts/::1721622415
 antiquity-print.ttf::FontFile::2299310904471203199::1721622342::1721622415::1::::<><>::
-::res://addons/scenes/::1721675119
-enemy_melee.tscn::PackedScene::3200841211584206454::1721675119::0::1::::<><>::res://addons/scripts/enemy_melee.gd
-player.tscn::PackedScene::9153476531337506414::1721675119::0::1::::<><>::res://addons/scripts/player.gd<>uid://cp0l27hx1vicx::::res://addons/scenes/projectile.tscn<>res://addons/scripts/hand.gd
-projectile.tscn::PackedScene::5878001261805475299::1721675119::0::1::::<><>::res://addons/scripts/projectile.gd
-::res://addons/scenes/levels/::1721675240
-game.tscn::PackedScene::2461919442622864486::1721675240::0::1::::<><>::res://addons/game.gd<>uid://d3oaok3fe6vys::::res://addons/scenes/player.tscn<>uid://cpg0qpa5u58ro::::res://addons/sprites/upper/Forest Tilesett.png<>res://addons/scripts/camera_2d.gd<>uid://blurnfq2y8log::::res://addons/scenes/enemy_melee.tscn
-main_menu.tscn::PackedScene::8840739954595477465::1721675119::0::1::::<><>::uid://702kx0rv8cux::::res://addons/fonts/antiquity-print.ttf<>res://addons/scripts/main_menu.gd
-::res://addons/scripts/::1721664529
+::res://addons/scenes/::1721691333
+enemy_melee.tscn::PackedScene::3200841211584206454::1721691333::0::1::::<><>::res://addons/scripts/enemy_melee.gd
+player.tscn::PackedScene::9153476531337506414::1721691333::0::1::::<><>::res://addons/scripts/player.gd<>uid://cp0l27hx1vicx::::res://addons/scenes/projectile.tscn<>res://addons/scripts/hand.gd
+projectile.tscn::PackedScene::5878001261805475299::1721691333::0::1::::<><>::res://addons/scripts/projectile.gd
+::res://addons/scenes/levels/::1721691333
+game.tscn::PackedScene::2461919442622864486::1721691333::0::1::::<><>::res://addons/game.gd<>uid://d3oaok3fe6vys::::res://addons/scenes/player.tscn<>uid://cpg0qpa5u58ro::::res://addons/sprites/upper/Forest Tilesett.png<>uid://cs0jdpbaelltk::::res://addons/sprites/upper/Forest Props.png<>uid://cn225iw1wnt3a::::res://addons/sprites/cave/MainLev2.0.png<>res://addons/scripts/camera_2d.gd<>uid://blurnfq2y8log::::res://addons/scenes/enemy_melee.tscn<>uid://8e1rfwf6a77h::::res://addons/sprites/upper/Forest Cliff.png<>uid://dii8uma7j6qit::::res://addons/sprites/dungeon/Damp Dungeon Tileset.png
+main_menu.tscn::PackedScene::8840739954595477465::1721691333::0::1::::<><>::uid://702kx0rv8cux::::res://addons/fonts/antiquity-print.ttf<>res://addons/scripts/main_menu.gd
+::res://addons/scripts/::1721679229
 camera_2d.gd::GDScript::-1::1721664529::0::1::::Camera<>Camera2D<>::
-enemy_melee.gd::GDScript::-1::1721664529::0::1::::<>CharacterBody2D<>::
+enemy_melee.gd::GDScript::-1::1721679229::0::1::::<>CharacterBody2D<>::
 hand.gd::GDScript::-1::1721664529::0::1::::<>Area2D<>::
 main_menu.gd::GDScript::-1::1721664529::0::1::::<>MarginContainer<>::
 player.gd::GDScript::-1::1721664529::0::1::::<>CharacterBody2D<>::
 projectile.gd::GDScript::-1::1721664529::0::1::::<>Area2D<>::
 ::res://addons/sounds/::1721324426
-::res://addons/sprites/::1721664449
+::res://addons/sprites/::1721691392
 ::res://addons/sprites/cave/::1721664516
 decorative.png::CompressedTexture2D::5759730150435111320::1721664516::1721664516::1::::<><>::
 MainLev2.0.png::CompressedTexture2D::5742727922045831052::1721664516::1721664516::1::::<><>::
@@ -31,6 +31,11 @@ LedA.png::CompressedTexture2D::6838181152273239054::1721664516::1721664516::1:::
 LedB.png::CompressedTexture2D::5753366082319920591::1721664516::1721664516::1::::<><>::
 LedC.png::CompressedTexture2D::3660263579958486115::1721664516::1721664516::1::::<><>::
 LedD.png::CompressedTexture2D::8958238004921657259::1721664516::1721664516::1::::<><>::
+::res://addons/sprites/dungeon/::1721691083
+Damp Dungeon Sprites.png::CompressedTexture2D::2658872996745301635::1721691082::1721691083::1::::<><>::
+Damp Dungeon Tileset.png::CompressedTexture2D::7739327830602831211::1721691079::1721691079::1::::<><>::
+::res://addons/sprites/expanded/::1721691498
+gentle forest v01.png::CompressedTexture2D::8612757994380456483::1721691498::1721691498::1::::<><>::
 ::res://addons/sprites/upper/::1721664450
 Forest Cliff.png::CompressedTexture2D::2326098648250708567::1721664444::1721664450::1::::<><>::
 Forest Props.png::CompressedTexture2D::6088402596439739924::1721664444::1721664450::1::::<><>::
