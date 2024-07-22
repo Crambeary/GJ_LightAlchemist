@@ -1,3 +1,4 @@
+TileMapLayer
 AnimationPlayer
 AnimationTree
 CanvasModulate
@@ -11,4 +12,3 @@ ColorRect
 MarginContainer
 Timer
 CollisionShape2D
-Area2D

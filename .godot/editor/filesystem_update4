@@ -1,8 +1,0 @@
-res://addons/scenes/levels/game.tscn
-res://addons/scripts/camera_2d.gd
-res://addons/scripts/enemy_melee.gd
-res://addons/game.gd
-res://addons/scripts/hand.gd
-res://addons/scripts/main_menu.gd
-res://addons/scripts/player.gd
-res://addons/scripts/projectile.gd
