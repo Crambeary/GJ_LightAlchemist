@@ -1,3 +1,6 @@
+TileMapLayer
+TileMap
+Node2D
 AnimationPlayer
 AnimationTree
 CanvasModulate
@@ -9,6 +12,3 @@ Label
 TextEdit
 ColorRect
 MarginContainer
-Timer
-CollisionShape2D
-Area2D

@@ -5,6 +5,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_altv7"]
 
 [node name="Enemy_Melee" type="CharacterBody2D" groups=["mobs"]]
+y_sort_enabled = true
 script = ExtResource("1_gvscv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
