@@ -1,3 +1,6 @@
 res://default_env.tres::188cc61ec16f8c9f0c04344f2559d182::1721320279::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
-res://node_2d.tscn::659c930d21ddf377e910692c55db9231::1721325387::res://.godot/exported/133200997/export-362256a061aa8890e9a1e558b11e5ec3-node_2d.scn
-res://addons/scenes/player.tscn::2a89e5d58911da8536b68dc847bad0f6::1721325378::res://.godot/exported/133200997/export-827b2aa2e98e2bb02e0f8c60cae154af-player.scn
+res://addons/scenes/player.tscn::91099fa8088ab4fc54499341f57c7239::1721622342::res://.godot/exported/133200997/export-827b2aa2e98e2bb02e0f8c60cae154af-player.scn
+res://addons/scenes/levels/game.tscn::63b2692fbedbeba9a822a280bd8937a4::1721622342::res://.godot/exported/133200997/export-3527b7e0fcd8bb9f41f97dd1aec2d8b5-game.scn
+res://addons/scenes/levels/main_menu.tscn::56887903de212f512b5d2ddf20d08c00::1721622342::res://.godot/exported/133200997/export-2aa90863d3a51f582eef82b6240741a3-main_menu.scn
+res://addons/scenes/enemy_melee.tscn::3e10f10eb7e1381fd9892de8dbcf95c4::1721622342::res://.godot/exported/133200997/export-1b652b5f77196ee22649e96f98ab3f59-enemy_melee.scn
+res://addons/scenes/projectile.tscn::63eb4581b3e49583d0c7e0d1c650e3cd::1721622342::res://.godot/exported/133200997/export-32bfb577e9ec466d4627cacbf232277b-projectile.scn
