@@ -1,8 +1,0 @@
-res://addons/scenes/levels/game.tscn
-res://addons/scenes/player.tscn
-res://addons/scenes/enemy_melee.tscn
-res://addons/scenes/projectile.tscn
-res://addons/scenes/levels/main_menu.tscn
-res://addons/scripts/enemy_melee.gd
-res://addons/game.gd
-res://addons/scripts/player.gd
