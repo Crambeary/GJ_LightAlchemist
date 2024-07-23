@@ -9,6 +9,8 @@ extends CharacterBody2D
 
 const SPEED = 50.0
 
+func getPlayer():
+	return Player
 
 
 func _physics_process(delta: float) -> void:

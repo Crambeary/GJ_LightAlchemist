@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3oaok3fe6vys"]
+[gd_scene load_steps=29 format=3 uid="uid://d3oaok3fe6vys"]
 
 [ext_resource type="Script" path="res://addons/scripts/player.gd" id="1_etavu"]
 [ext_resource type="PackedScene" uid="uid://cp0l27hx1vicx" path="res://addons/scenes/projectile.tscn" id="2_rrjey"]
 [ext_resource type="Script" path="res://addons/scripts/hand.gd" id="2_u14fr"]
 [ext_resource type="Texture2D" uid="uid://dwiiviuflvs7w" path="res://addons/sprites/characters/player/AnimationSheet_Character.png" id="3_6oo6i"]
+[ext_resource type="Texture2D" uid="uid://dxaa1s5krfi2n" path="res://addons/sprites/characters/player/orb_bloom.png" id="5_py3gl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nouf6"]
 radius = 8.0
@@ -121,6 +122,61 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_uy7kf"]
 radius = 2.23607
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m47fs"]
+atlas = ExtResource("5_py3gl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omwd0"]
+atlas = ExtResource("5_py3gl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wel46"]
+atlas = ExtResource("5_py3gl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w13gs"]
+atlas = ExtResource("5_py3gl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcyga"]
+atlas = ExtResource("5_py3gl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf3h3"]
+atlas = ExtResource("5_py3gl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jpbcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m47fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omwd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wel46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w13gs")
+}],
+"loop": false,
+"name": &"bloom",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcyga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf3h3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -7)
 script = ExtResource("1_etavu")
@@ -133,27 +189,23 @@ shape = SubResource("CapsuleShape2D_nouf6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bdv56")
-animation = &"invisible"
+animation = &"idle"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
 offset = Vector2(1, 0)
 
 [node name="Hand" type="Area2D" parent="."]
 script = ExtResource("2_u14fr")
 
-[node name="Sprite2D" type="Sprite2D" parent="Hand"]
-
-[node name="ColorRect" type="ColorRect" parent="Hand/Sprite2D"]
-offset_left = 14.0
-offset_top = -1.0
-offset_right = 18.0
-offset_bottom = 1.0
-pivot_offset = Vector2(-14, 1)
-
-[node name="Marker2D" type="Marker2D" parent="Hand/Sprite2D"]
-position = Vector2(18, 0)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
-position = Vector2(16, 0)
+position = Vector2(15, 0)
 shape = SubResource("CircleShape2D_uy7kf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hand/CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_jpbcl")
+animation = &"bloom"
+autoplay = "idle"
+frame_progress = 1.0
+
+[node name="Marker2D" type="Marker2D" parent="Hand/CollisionShape2D/AnimatedSprite2D"]
+
+[connection signal="animation_finished" from="Hand/CollisionShape2D/AnimatedSprite2D" to="." method="_on_hand_animation_finished"]
