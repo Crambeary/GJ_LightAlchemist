@@ -5,22 +5,20 @@
 [ext_resource type="Script" path="res://addons/scripts/hand.gd" id="2_u14fr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nouf6"]
-radius = 9.0
-height = 18.0
+height = 34.0
 
 [sub_resource type="MeshTexture" id="MeshTexture_kf31a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uy7kf"]
 radius = 2.23607
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -7)
 script = ExtResource("1_etavu")
 Projectile = ExtResource("2_rrjey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_nouf6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

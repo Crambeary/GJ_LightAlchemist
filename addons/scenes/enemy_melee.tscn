@@ -1,8 +1,73 @@
-[gd_scene load_steps=3 format=3 uid="uid://blurnfq2y8log"]
+[gd_scene load_steps=9 format=3 uid="uid://blurnfq2y8log"]
 
 [ext_resource type="Script" path="res://addons/scripts/enemy_melee.gd" id="1_gvscv"]
+[ext_resource type="Script" path="res://addons/scripts/enemy_sword.gd" id="2_e7rej"]
+[ext_resource type="Texture2D" uid="uid://b14o0q0pejeha" path="res://addons/sprites/weapons/Iicon_32_01.png" id="3_p1na1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_altv7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyj62"]
+size = Vector2(6.5, 1)
+
+[sub_resource type="Animation" id="Animation_7d3fd"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_tibsj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1pu52"]
+_data = {
+"RESET": SubResource("Animation_tibsj"),
+"swing": SubResource("Animation_7d3fd")
+}
 
 [node name="Enemy_Melee" type="CharacterBody2D" groups=["mobs"]]
 y_sort_enabled = true
@@ -20,3 +85,26 @@ color = Color(1, 0.37, 0.37, 1)
 
 [node name="Melee Cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="sword direction" type="Node2D" parent="."]
+
+[node name="Sword" type="Area2D" parent="sword direction"]
+scale = Vector2(2, 2)
+script = ExtResource("2_e7rej")
+
+[node name="Sprite2D" type="Sprite2D" parent="sword direction/Sword"]
+position = Vector2(11, 0)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_p1na1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="sword direction/Sword"]
+position = Vector2(12.5, 0)
+shape = SubResource("RectangleShape2D_tyj62")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sword direction"]
+libraries = {
+"": SubResource("AnimationLibrary_1pu52")
+}
+
+[connection signal="body_entered" from="sword direction/Sword" to="." method="_on_sword_body_entered"]
