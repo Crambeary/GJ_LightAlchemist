@@ -177,7 +177,7 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -7)
 script = ExtResource("1_etavu")
 Projectile = ExtResource("2_rrjey")

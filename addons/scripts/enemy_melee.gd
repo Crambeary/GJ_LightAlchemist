@@ -1,10 +1,13 @@
 extends CharacterBody2D
 @onready var Player: CharacterBody2D = %Player
 @onready var melee_cooldown: Timer = $"Melee Cooldown"
+@onready var sword_direction: Node2D = $"sword direction"
+@onready var animation_player: AnimationPlayer = $"sword direction/AnimationPlayer"
+
 
 @export var max_distance := 200
 @export var health = 4
-@export var melee_distance = 30
+@export var melee_distance = 60
 
 
 const SPEED = 50.0
@@ -28,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * SPEED
 
 	move_and_slide()
+	sword_direction.look_at(Player.global_position)
 
 func take_damage(amount: int) -> void:
 	health = health - amount
@@ -38,7 +42,13 @@ func melee() -> void:
 	# Swing at player for 2 damage
 	# We only execute this when in range, but maybe it's worth confirming for safety?
 	melee_cooldown.start()
-	print("Melee")
-	Player.take_damage(2)
+	animation_player.play("swing")
 	
 	
+	
+
+
+func _on_sword_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("hit")
+		body.take_damage(2)
