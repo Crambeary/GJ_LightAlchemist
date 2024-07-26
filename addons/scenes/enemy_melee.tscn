@@ -1,10 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://blurnfq2y8log"]
+[gd_scene load_steps=15 format=3 uid="uid://blurnfq2y8log"]
 
 [ext_resource type="Script" path="res://addons/scripts/enemy_melee.gd" id="1_gvscv"]
+[ext_resource type="Shader" path="res://addons/shaders/damage.gdshader" id="1_j00qp"]
 [ext_resource type="Script" path="res://addons/scripts/enemy_sword.gd" id="2_e7rej"]
 [ext_resource type="Texture2D" uid="uid://b14o0q0pejeha" path="res://addons/sprites/weapons/Iicon_32_01.png" id="3_p1na1"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tj60m"]
+resource_local_to_scene = true
+shader = ExtResource("1_j00qp")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_altv7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajolh"]
+resource_local_to_scene = true
+shader = ExtResource("1_j00qp")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyj62"]
 size = Vector2(6.5, 1)
@@ -69,8 +82,94 @@ _data = {
 "swing": SubResource("Animation_7d3fd")
 }
 
+[sub_resource type="Animation" id="Animation_4m2np"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sword direction/Sword/Sprite2D:material:shader_parameter/flash_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.37, 0.37, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_twk3a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sword direction/Sword/Sprite2D:material:shader_parameter/flash_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.37, 0.37, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4bgs"]
+_data = {
+"RESET": SubResource("Animation_twk3a"),
+"hit": SubResource("Animation_4m2np")
+}
+
 [node name="Enemy_Melee" type="CharacterBody2D" groups=["mobs"]]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_tj60m")
 script = ExtResource("1_gvscv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -94,6 +193,7 @@ collision_mask = 2
 script = ExtResource("2_e7rej")
 
 [node name="Sprite2D" type="Sprite2D" parent="sword direction/Sword"]
+material = SubResource("ShaderMaterial_ajolh")
 position = Vector2(11, 0)
 rotation = 0.785398
 scale = Vector2(0.25, 0.25)
@@ -107,6 +207,11 @@ disabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="sword direction"]
 libraries = {
 "": SubResource("AnimationLibrary_1pu52")
+}
+
+[node name="FlashHit" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s4bgs")
 }
 
 [connection signal="area_entered" from="sword direction/Sword" to="." method="_on_sword_area_entered"]
