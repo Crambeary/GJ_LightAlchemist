@@ -6,10 +6,11 @@ extends CharacterBody2D
 
 
 @export var max_distance := 200
-@export var health = 4
-@export var melee_distance = 60
+@export var min_distance := 35
+@export var max_health := 4
+@export var melee_distance := 60
 
-
+var health := max_health
 const SPEED = 50.0
 
 func getPlayer():
@@ -20,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Vector2(0,0)
 	# Get player location relative to me
 	var EnemyToPlayer = Player.position - position
-	if EnemyToPlayer.length() < max_distance:
+	if EnemyToPlayer.length() < max_distance and EnemyToPlayer.length() > min_distance:
 		# We move on to the next step.
 		direction = EnemyToPlayer.normalized()
 	
@@ -49,6 +50,11 @@ func melee() -> void:
 
 
 func _on_sword_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	pass # Replace with function body.
+
+
+func _on_sword_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		var body = area.get_parent()
 		print("hit")
 		body.take_damage(2)
