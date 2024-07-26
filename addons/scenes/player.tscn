@@ -190,18 +190,19 @@ Projectile = ExtResource("2_rrjey")
 position = Vector2(1, 12)
 shape = SubResource("CapsuleShape2D_y30e4")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
 collision_layer = 2
 
-[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+[node name="HitBox" type="CollisionShape2D" parent="Area2D" groups=["player"]]
 y_sort_enabled = true
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_nouf6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bdv56")
-animation = &"idle"
+animation = &"Run"
 autoplay = "idle"
+frame_progress = 0.946506
 offset = Vector2(1, 0)
 
 [node name="Hand" type="Area2D" parent="."]

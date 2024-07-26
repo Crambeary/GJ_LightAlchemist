@@ -9,33 +9,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyj62"]
 size = Vector2(6.5, 1)
 
-[sub_resource type="Animation" id="Animation_7d3fd"]
-resource_name = "swing"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.785398, 0.785398, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sword/CollisionShape2D2:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
 [sub_resource type="Animation" id="Animation_tibsj"]
 length = 0.001
 tracks/0/type = "value"
@@ -60,7 +33,34 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7d3fd"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1pu52"]
@@ -90,6 +90,7 @@ one_shot = true
 
 [node name="Sword" type="Area2D" parent="sword direction"]
 scale = Vector2(2, 2)
+collision_mask = 2
 script = ExtResource("2_e7rej")
 
 [node name="Sprite2D" type="Sprite2D" parent="sword direction/Sword"]
@@ -101,10 +102,12 @@ texture = ExtResource("3_p1na1")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="sword direction/Sword"]
 position = Vector2(12.5, 0)
 shape = SubResource("RectangleShape2D_tyj62")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="sword direction"]
 libraries = {
 "": SubResource("AnimationLibrary_1pu52")
 }
 
+[connection signal="area_entered" from="sword direction/Sword" to="." method="_on_sword_area_entered"]
 [connection signal="body_entered" from="sword direction/Sword" to="." method="_on_sword_body_entered"]
