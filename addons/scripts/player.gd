@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hand_animation: AnimatedSprite2D = $Hand/CollisionShape2D/AnimatedSprite2D
 @onready var walking_dust: AnimatedSprite2D = $"Walking Dust"
+@onready var flash_hit: AnimationPlayer = $FlashHit
 
 
 @export var Projectile : PackedScene
@@ -88,6 +89,7 @@ func shoot():
 func take_damage(amount: int) -> void:
 	health = health - amount
 	animated_sprite_2d.modulate.r = 255 /(health - max_health)
+	flash_hit.play("hit")
 	if health <= 0:
 		health_depleated.emit()
 
