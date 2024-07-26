@@ -1,10 +1,11 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hand_animation: AnimatedSprite2D = $Hand/CollisionShape2D/AnimatedSprite2D
+@onready var walking_dust: AnimatedSprite2D = $"Walking Dust"
 
 
 @export var Projectile : PackedScene
-@export var health := 4
+@export var max_health := 4
 @export var teleport_time := 0.5
 
 
@@ -15,8 +16,9 @@ const SPEED = 100.0
 signal health_depleated
 
 var isTeleporting := false
-var is_teleporting_time = teleport_time
-var shoot_on_cooldown = false
+var is_teleporting_time := teleport_time
+var shoot_on_cooldown := false
+var health := max_health
 
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -28,14 +30,22 @@ func _physics_process(delta: float) -> void:
 			# Determine which direction we are facing. Use Flip H And offset -1 for left facing
 			animated_sprite_2d.offset.x = 1
 			animated_sprite_2d.flip_h = false
+			walking_dust.offset.x = 0
+			walking_dust.flip_h = false
 		elif direction.x < 0:
 			animated_sprite_2d.offset.x = -1
 			animated_sprite_2d.flip_h = true
+			walking_dust.offset.x = 18
+			walking_dust.flip_h = true
 			
 		if direction:
 			animated_sprite_2d.play("Run")
+			walking_dust.play("default")
+			walking_dust.show()
 		else:
 			animated_sprite_2d.play("idle")
+			walking_dust.hide()
+			walking_dust.stop()
 		
 		
 		velocity = direction * SPEED
@@ -77,6 +87,7 @@ func shoot():
 
 func take_damage(amount: int) -> void:
 	health = health - amount
+	animated_sprite_2d.modulate.r = 255 /(health - max_health)
 	if health <= 0:
 		health_depleated.emit()
 
