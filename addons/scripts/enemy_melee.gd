@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var melee_cooldown: Timer = $"Melee Cooldown"
 @onready var sword_direction: Node2D = $"sword direction"
 @onready var animation_player: AnimationPlayer = $"sword direction/AnimationPlayer"
+@onready var flash_hit: AnimationPlayer = $FlashHit
 
 
 @export var max_distance := 200
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount: int) -> void:
 	health = health - amount
+	flash_hit.play("hit")
 	if health <= 0:
 		queue_free()
 
