@@ -9,12 +9,14 @@ extends CharacterBody2D
 @export var health = 4
 @export var melee_distance = 60
 
-
+var sound_player := AudioStreamPlayer.new()
 const SPEED = 50.0
 
 func getPlayer():
 	return Player
 
+func _ready() -> void:
+	add_child(sound_player)
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector2(0,0)
@@ -32,6 +34,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	sword_direction.look_at(Player.global_position)
+	if animation_player.is_playing():
+		var sound_effect = load("res://path_to_sound_effect.wav")
+		sound_player.stream = sound_effect
+		sound_player.play()
 
 func take_damage(amount: int) -> void:
 	health = health - amount
@@ -43,10 +49,6 @@ func melee() -> void:
 	# We only execute this when in range, but maybe it's worth confirming for safety?
 	melee_cooldown.start()
 	animation_player.play("swing")
-	
-	
-	
-
 
 func _on_sword_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

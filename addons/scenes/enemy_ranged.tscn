@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjrmeswws8kpu"]
+[gd_scene load_steps=5 format=3 uid="uid://cox1vquavydlh"]
 
 [ext_resource type="Script" path="res://addons/scripts/enemy_ranged.gd" id="1_gnj06"]
+[ext_resource type="PackedScene" uid="uid://bnchs3o8jgkge" path="res://addons/scenes/enemy_projectile.tscn" id="2_reudw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vofc"]
 height = 32.0
@@ -8,8 +9,11 @@ height = 32.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm0f7"]
 size = Vector2(5.25, 3)
 
-[node name="Enemy_Ranged" type="CharacterBody2D"]
+[node name="Enemy_Ranged" type="CharacterBody2D" groups=["mobs"]]
 script = ExtResource("1_gnj06")
+Enemy_Projectile = ExtResource("2_reudw")
+
+[node name="Ranged Cooldown" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1vofc")
@@ -21,14 +25,19 @@ offset_right = 8.0
 offset_bottom = 12.0
 color = Color(0.924907, 0.553734, 0, 1)
 
-[node name="enemy_ranged_weapon" type="Area2D" parent="."]
+[node name="ranged_direction" type="Node2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="enemy_ranged_weapon"]
+[node name="enemy_ranged_weapon" type="Area2D" parent="ranged_direction"]
+
+[node name="ColorRect" type="ColorRect" parent="ranged_direction/enemy_ranged_weapon"]
 offset_left = 14.0
 offset_top = -1.0
 offset_right = 18.0
 offset_bottom = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_ranged_weapon"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ranged_direction/enemy_ranged_weapon"]
 position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_tm0f7")
+
+[node name="Marker2D" type="Marker2D" parent="ranged_direction/enemy_ranged_weapon"]
+position = Vector2(16, 0)

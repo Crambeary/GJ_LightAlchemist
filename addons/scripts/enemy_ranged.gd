@@ -1,18 +1,21 @@
 extends CharacterBody2D
 @onready var Player: CharacterBody2D = %Player
-@onready var melee_cooldown: Timer = $"Melee Cooldown"
-@onready var sword_direction: Node2D = $"sword direction"
-@onready var animation_player: AnimationPlayer = $"sword direction/AnimationPlayer"
+@onready var ranged_cooldown: Timer = $"Ranged Cooldown"
+@onready var enemy_ranged_weapon: Area2D = $enemy_ranged_weapon
+@onready var ranged_direction: Node2D = $ranged_direction
+@onready var marker_2d: Marker2D = $ranged_direction/enemy_ranged_weapon/Marker2D
 
-
+@export var Enemy_Projectile : PackedScene
 @export var max_distance := 200
 @export var health = 4
-@export var melee_distance = 60
+@export var ranged_distance = 200
 
 
 const SPEED = 50.0
+var shoot_on_cooldown = false
 
-
+func getPlayer():
+	return Player
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector2(0,0)
@@ -22,31 +25,28 @@ func _physics_process(delta: float) -> void:
 		# We move on to the next step.
 		direction = EnemyToPlayer.normalized()
 	
-	if EnemyToPlayer.length() < melee_distance && melee_cooldown.is_stopped():
-		melee()
+	if EnemyToPlayer.length() < ranged_distance && ranged_cooldown.is_stopped():
+		ranged()
 	
 	# TODO: Is there a pathfinding package I can use?
 	velocity = direction * SPEED
 
 	move_and_slide()
-	sword_direction.look_at(Player.global_position)
+	ranged_direction.look_at(Player.global_position)
 
 func take_damage(amount: int) -> void:
 	health = health - amount
 	if health <= 0:
 		queue_free()
 
-func melee() -> void:
-	# Swing at player for 2 damage
+func ranged() -> void:
+	# Shoot at player for 2 damage
 	# We only execute this when in range, but maybe it's worth confirming for safety?
-	melee_cooldown.start()
-	animation_player.play("swing")
-	
-	
-	
-
-
-func _on_sword_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		print("hit")
-		body.take_damage(2)
+	shoot()
+	ranged_cooldown.start()
+func shoot() -> void:
+	if not shoot_on_cooldown:
+		var b = Enemy_Projectile.instantiate()
+		owner.add_child(b)
+		b.transform = marker_2d.global_transform
+		shoot_on_cooldown = true

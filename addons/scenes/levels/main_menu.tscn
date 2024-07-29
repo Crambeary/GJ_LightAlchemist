@@ -120,13 +120,16 @@ libraries = {
 autoplay = "float_title"
 
 [node name="Label" type="Label" parent="VBoxContainer/floating label"]
-offset_top = 233.0
+offset_top = 232.0
 offset_right = 1152.0
-offset_bottom = 281.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_5n3mq")
 theme_override_font_sizes/font_size = 32
 text = "The Light Alchemist"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2

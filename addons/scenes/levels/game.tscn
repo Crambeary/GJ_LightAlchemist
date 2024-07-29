@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bbctpojrhoxcg"]
+[gd_scene load_steps=25 format=4 uid="uid://bbctpojrhoxcg"]
 
 [ext_resource type="Script" path="res://addons/game.gd" id="1_wb35t"]
 [ext_resource type="PackedScene" uid="uid://d3oaok3fe6vys" path="res://addons/scenes/player.tscn" id="2_81x5s"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://duyc4o5q2fo5x" path="res://addons/sprites/expanded/gentle forest v01.png" id="5_7buuf"]
 [ext_resource type="Texture2D" uid="uid://8e1rfwf6a77h" path="res://addons/sprites/upper/Forest Cliff.png" id="5_cslxv"]
 [ext_resource type="Texture2D" uid="uid://dii8uma7j6qit" path="res://addons/sprites/dungeon/Damp Dungeon Tileset.png" id="9_n77p4"]
+[ext_resource type="PackedScene" uid="uid://cox1vquavydlh" path="res://addons/scenes/enemy_ranged.tscn" id="11_m7ytj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_78i1p"]
 texture = ExtResource("2_skk5u")
@@ -3270,6 +3271,9 @@ position = Vector2(131, -67)
 
 [node name="Enemy_Melee2" parent="Props" instance=ExtResource("4_cnd1v")]
 position = Vector2(-67, -67)
+
+[node name="Enemy_Ranged" parent="Props" instance=ExtResource("11_m7ytj")]
+position = Vector2(-118, 36)
 
 [node name="Enemy_Melee" parent="." instance=ExtResource("4_cnd1v")]
 position = Vector2(764, 14)
