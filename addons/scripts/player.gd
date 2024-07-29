@@ -96,6 +96,12 @@ func take_damage(amount: int) -> void:
     animated_sprite_2d.modulate.r = 255 /(health - max_health)
     if health <= 0:
         health_depleated.emit()
+        
+func heal(amount: int) -> void:
+    health = health + amount
+    if health >= max_health:
+        health = max_health
+    ui.update_health(health)
 
 func _on_hand_animation_finished() -> void:
     hand_animation.play("idle")
