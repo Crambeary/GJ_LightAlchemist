@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d3oaok3fe6vys"]
+[gd_scene load_steps=44 format=3 uid="uid://d3oaok3fe6vys"]
 
 [ext_resource type="Script" path="res://addons/scripts/player.gd" id="1_etavu"]
 [ext_resource type="PackedScene" uid="uid://cp0l27hx1vicx" path="res://addons/scenes/projectile.tscn" id="2_rrjey"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://addons/shaders/damage.gdshader" id="3_thwjg"]
 [ext_resource type="Texture2D" uid="uid://dxaa1s5krfi2n" path="res://addons/sprites/characters/player/orb_bloom.png" id="5_py3gl"]
 [ext_resource type="Texture2D" uid="uid://dwgevrqq4na3t" path="res://addons/sprites/characters/player/SmokeNDust P03 VFX 5.png" id="6_ecyw2"]
+[ext_resource type="AudioStream" uid="uid://bp264kpl7vd1b" path="res://addons/sounds/sfx/Explosion3.wav" id="8_ae2ex"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y30e4"]
 radius = 4.0
@@ -239,6 +240,21 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_dahpr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_e1oi7"]
 resource_name = "hit"
 length = 0.5
@@ -253,21 +269,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_dahpr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pemck"]
@@ -327,5 +328,8 @@ frame_progress = 0.787247
 libraries = {
 "": SubResource("AnimationLibrary_pemck")
 }
+
+[node name="SFX_Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ae2ex")
 
 [connection signal="animation_finished" from="Hand/CollisionShape2D/AnimatedSprite2D" to="." method="_on_hand_animation_finished"]

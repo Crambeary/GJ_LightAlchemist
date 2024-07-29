@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx7rxv5fj0bvt"]
+[gd_scene load_steps=11 format=3 uid="uid://dx7rxv5fj0bvt"]
 
 [ext_resource type="FontFile" uid="uid://702kx0rv8cux" path="res://addons/fonts/antiquity-print.ttf" id="1_5n3mq"]
 [ext_resource type="Script" path="res://addons/scripts/main_menu.gd" id="1_t7qrw"]
+[ext_resource type="AudioStream" uid="uid://c355qsl4qsrhq" path="res://addons/sounds/sfx/Blip_Select6.wav" id="3_ig6p7"]
+[ext_resource type="AudioStream" uid="uid://c0lvbf0gqxbap" path="res://addons/sounds/sfx/Blip_Select4.wav" id="4_hpx14"]
 
 [sub_resource type="Animation" id="Animation_o43w8"]
 length = 0.001
@@ -143,4 +145,12 @@ theme_override_fonts/font = ExtResource("1_5n3mq")
 theme_override_font_sizes/font_size = 20
 text = "Start"
 
+[node name="OnClick" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/Button"]
+stream = ExtResource("3_ig6p7")
+bus = &"SFX"
+
+[node name="OnHover" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/Button"]
+stream = ExtResource("4_hpx14")
+
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_start_button_down"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_mouse_entered"]
