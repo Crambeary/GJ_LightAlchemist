@@ -1,4 +1,5 @@
-extends Node2D
+extends CanvasLayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,9 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     pass
 
-func game_over() -> void:
-    get_tree().reload_current_scene()
-
-
-func _on_player_health_depleated() -> void:
-    game_over()
+func update_health(value: int) -> void:
+    $Control/MarginContainer/HBoxContainer.update_health(value)
