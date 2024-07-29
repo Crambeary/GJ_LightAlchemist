@@ -55,11 +55,9 @@ one_shot = true
 
 [node name="SFX_Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_tdvce")
-bus = &"SFX"
 
 [node name="SFX_Explode" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_cemd1")
-bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
