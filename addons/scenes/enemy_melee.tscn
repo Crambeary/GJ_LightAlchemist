@@ -462,7 +462,7 @@ shape = SubResource("CapsuleShape2D_altv7")
 material = SubResource("ShaderMaterial_x1i0w")
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_2pvqv")
-animation = &"hit"
+animation = &"death"
 autoplay = "idle"
 
 [node name="Melee Cooldown" type="Timer" parent="."]
