@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bbctpojrhoxcg"]
+[gd_scene load_steps=24 format=4 uid="uid://bbctpojrhoxcg"]
 
 [ext_resource type="Script" path="res://addons/game.gd" id="1_wb35t"]
 [ext_resource type="PackedScene" uid="uid://d3oaok3fe6vys" path="res://addons/scenes/player.tscn" id="2_81x5s"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dii8uma7j6qit" path="res://addons/sprites/dungeon/Damp Dungeon Tileset.png" id="9_n77p4"]
 [ext_resource type="PackedScene" uid="uid://dp7na2uu3kp5l" path="res://addons/scenes/ui.tscn" id="10_7sslc"]
 [ext_resource type="PackedScene" uid="uid://brlcwa1hsprnm" path="res://addons/scenes/mushroom_health.tscn" id="11_co8pl"]
+[ext_resource type="PackedScene" uid="uid://2k14uxyowlf1" path="res://addons/scenes/pause_menu.tscn" id="12_gbakr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_78i1p"]
 texture = ExtResource("2_skk5u")
@@ -1314,19 +1315,20 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_0vwpe")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4upqd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shuae"]
 resource_local_to_scene = true
 shader = ExtResource("9_lf330")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyikq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyxwu"]
 resource_local_to_scene = true
 shader = ExtResource("9_lf330")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
 [node name="Game" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_wb35t")
 
 [node name="Base Layer" type="TileMapLayer" parent="."]
@@ -1377,11 +1379,11 @@ MAX_DISTANCE = 200.0
 SMOOTH_SPEED = 2.0
 
 [node name="Enemy_Melee" parent="Props" instance=ExtResource("4_cnd1v")]
-material = SubResource("ShaderMaterial_4upqd")
+material = SubResource("ShaderMaterial_shuae")
 position = Vector2(131, -67)
 
 [node name="Enemy_Melee2" parent="Props" instance=ExtResource("4_cnd1v")]
-material = SubResource("ShaderMaterial_vyikq")
+material = SubResource("ShaderMaterial_wyxwu")
 position = Vector2(-67, -67)
 
 [node name="UI" parent="." instance=ExtResource("10_7sslc")]
@@ -1390,5 +1392,8 @@ visible = false
 
 [node name="MushroomHealth" parent="." instance=ExtResource("11_co8pl")]
 position = Vector2(-80, 48)
+
+[node name="PauseMenu" parent="." instance=ExtResource("12_gbakr")]
+visible = false
 
 [connection signal="health_depleated" from="Props/Player" to="." method="_on_player_health_depleated"]
