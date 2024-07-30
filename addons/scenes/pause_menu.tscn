@@ -56,7 +56,9 @@ theme_override_constants/margin_top = 32
 
 [node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "WASD - Move
+text = "Don't forget, mushrooms Heal You
+
+WASD - Move
 Mouse - Aim
 Mouse Click - Shoot
 CTRL - Dash

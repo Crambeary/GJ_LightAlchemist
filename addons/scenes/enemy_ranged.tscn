@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://co4tn5vqebeud" path="res://addons/sprites/weapons/bow/Hunter's Embrace.png" id="5_0vp4i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vofc"]
-height = 32.0
+height = 22.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeet8"]
 resource_local_to_scene = true
@@ -124,6 +124,7 @@ color = Color(0.924907, 0.553734, 0, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
 material = SubResource("ShaderMaterial_jeet8")
+position = Vector2(0, -4)
 sprite_frames = ExtResource("3_15m3b")
 animation = &"death"
 
