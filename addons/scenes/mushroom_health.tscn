@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://brlcwa1hsprnm"]
+
+[ext_resource type="Script" path="res://addons/scripts/mushroom_health.gd" id="1_j4o28"]
+[ext_resource type="Texture2D" uid="uid://bd48iq00veqk6" path="res://addons/sprites/dungeon/Damp Dungeon Sprites.png" id="2_q4g54"]
+[ext_resource type="AudioStream" uid="uid://de23wp0uk17l1" path="res://addons/sounds/sfx/Pickup_Coin2.wav" id="3_ovxt1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4878k"]
+
+[node name="MushroomHealth" type="Area2D"]
+script = ExtResource("1_j4o28")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4878k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q4g54")
+region_enabled = true
+region_rect = Rect2(128, 16, 16, 16)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ovxt1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

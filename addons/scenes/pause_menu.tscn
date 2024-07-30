@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://2k14uxyowlf1"]
+
+[ext_resource type="Script" path="res://addons/scripts/pause_menu.gd" id="1_i1mwo"]
+[ext_resource type="FontFile" uid="uid://702kx0rv8cux" path="res://addons/fonts/antiquity-print.ttf" id="2_q7slh"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_i1mwo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q7slh")
+theme_override_font_sizes/font_size = 32
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q7slh")
+theme_override_font_sizes/font_size = 20
+text = "Unpause"
+
+[connection signal="button_down" from="Control/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]

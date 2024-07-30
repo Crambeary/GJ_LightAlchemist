@@ -1,7 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx7rxv5fj0bvt"]
+[gd_scene load_steps=11 format=3 uid="uid://dx7rxv5fj0bvt"]
 
 [ext_resource type="FontFile" uid="uid://702kx0rv8cux" path="res://addons/fonts/antiquity-print.ttf" id="1_5n3mq"]
 [ext_resource type="Script" path="res://addons/scripts/main_menu.gd" id="1_t7qrw"]
+[ext_resource type="AudioStream" uid="uid://c355qsl4qsrhq" path="res://addons/sounds/sfx/Blip_Select6.wav" id="3_ig6p7"]
+[ext_resource type="AudioStream" uid="uid://c0lvbf0gqxbap" path="res://addons/sounds/sfx/Blip_Select4.wav" id="4_hpx14"]
+
+[sub_resource type="Animation" id="Animation_4txn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lldh1"]
+resource_name = "float_title"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Title:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 33)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_baoyx"]
+_data = {
+"RESET": SubResource("Animation_4txn7"),
+"float_title": SubResource("Animation_lldh1")
+}
 
 [sub_resource type="Animation" id="Animation_o43w8"]
 length = 0.001
@@ -53,43 +92,6 @@ _data = {
 "fade_to_black": SubResource("Animation_vi8xb")
 }
 
-[sub_resource type="Animation" id="Animation_4txn7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("floating label/Label:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 233)]
-}
-
-[sub_resource type="Animation" id="Animation_lldh1"]
-resource_name = "float_title"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("floating label/Label:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 233), Vector2(0, 250)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_baoyx"]
-_data = {
-"RESET": SubResource("Animation_4txn7"),
-"float_title": SubResource("Animation_lldh1")
-}
-
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,6 +104,13 @@ script = ExtResource("1_t7qrw")
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
+[node name="floating label" type="AnimationPlayer" parent="."]
+root_node = NodePath("../VBoxContainer")
+libraries = {
+"": SubResource("AnimationLibrary_baoyx")
+}
+autoplay = "float_title"
+
 [node name="StartTransition" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_bl2xw")
@@ -111,20 +120,19 @@ libraries = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="floating label" type="AnimationPlayer" parent="VBoxContainer"]
-libraries = {
-"": SubResource("AnimationLibrary_baoyx")
-}
-autoplay = "float_title"
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/floating label"]
-offset_top = 232.0
+[node name="Title" type="Label" parent="VBoxContainer/Control"]
+layout_mode = 2
+offset_top = 33.0
 offset_right = 1152.0
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_bottom = 81.0
 theme_override_fonts/font = ExtResource("1_5n3mq")
 theme_override_font_sizes/font_size = 32
 text = "The Light Alchemist"
@@ -146,4 +154,28 @@ theme_override_fonts/font = ExtResource("1_5n3mq")
 theme_override_font_sizes/font_size = 20
 text = "Start"
 
+[node name="OnClick" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/Button"]
+stream = ExtResource("3_ig6p7")
+
+[node name="OnHover" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/Button"]
+stream = ExtResource("4_hpx14")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5n3mq")
+text = "WASD - Move
+Mouse - Aim
+Mouse Click - Shoot
+CTRL - Dash
+ESC - Pause / Click button to unpause"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_start_button_down"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_mouse_entered"]
