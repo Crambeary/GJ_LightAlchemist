@@ -2191,13 +2191,13 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_0vwpe")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_alm0d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1abk"]
 resource_local_to_scene = true
 shader = ExtResource("9_lf330")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4uk5u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_higea"]
 resource_local_to_scene = true
 shader = ExtResource("9_lf330")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -2302,11 +2302,11 @@ MAX_DISTANCE = 200.0
 SMOOTH_SPEED = 2.0
 
 [node name="Enemy_Melee" parent="Props" instance=ExtResource("4_cnd1v")]
-material = SubResource("ShaderMaterial_alm0d")
+material = SubResource("ShaderMaterial_f1abk")
 position = Vector2(131, -67)
 
 [node name="Enemy_Melee2" parent="Props" instance=ExtResource("4_cnd1v")]
-material = SubResource("ShaderMaterial_4uk5u")
+material = SubResource("ShaderMaterial_higea")
 position = Vector2(-67, -67)
 
 [node name="Enemy_Melee3" parent="Props" instance=ExtResource("4_cnd1v")]

@@ -155,9 +155,11 @@ text = "Start"
 
 [node name="OnClick" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/Button"]
 stream = ExtResource("3_ig6p7")
+volume_db = -11.243
 
 [node name="OnHover" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/Button"]
 stream = ExtResource("4_hpx14")
+volume_db = -11.243
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
