@@ -16,6 +16,10 @@ run/main_scene="res://addons/scenes/levels/main_menu.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
+[autoload]
+
+BackgroundMusic="*res://addons/scenes/background_music.tscn"
+
 [global_group]
 
 mobs=""
