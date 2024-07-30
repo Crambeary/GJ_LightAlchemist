@@ -15,6 +15,11 @@ func _on_area_entered(area: Area2D) -> void:
     if area.is_in_group("player"):
         var body = area.get_parent()
         body.take_damage(2)
-    if not area.is_in_group("mobs"):
-        queue_free()
+    #if not area.is_in_group("mobs"):
+        #queue_free()
     
+
+
+func _on_body_entered(body: Node2D) -> void:
+    if not body.is_in_group("mobs"):
+        queue_free()

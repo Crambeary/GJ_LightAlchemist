@@ -278,7 +278,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(-1, -14)
+position = Vector2(-1, -11)
+scale = Vector2(0.753414, 0.753414)
 script = ExtResource("1_etavu")
 Projectile = ExtResource("2_rrjey")
 

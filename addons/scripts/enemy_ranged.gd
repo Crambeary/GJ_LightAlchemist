@@ -97,4 +97,3 @@ func _on_knock_fire_timeout() -> void:
     shoot()
     animated_sprite_2d.play("hit")
     bow_sprite.play("empty")
-    pass # Replace with function body.

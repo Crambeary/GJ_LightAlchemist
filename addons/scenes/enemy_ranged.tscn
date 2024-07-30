@@ -159,7 +159,7 @@ libraries = {
 }
 
 [node name="knock_fire" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.8
 one_shot = true
 
 [connection signal="animation_finished" from="CollisionShape2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
