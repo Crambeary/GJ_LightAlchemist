@@ -1316,13 +1316,13 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_0vwpe")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3v5ej"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fnwg1"]
 resource_local_to_scene = true
 shader = ExtResource("9_lf330")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8fke"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imugv"]
 resource_local_to_scene = true
 shader = ExtResource("9_lf330")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -1380,11 +1380,11 @@ MAX_DISTANCE = 200.0
 SMOOTH_SPEED = 2.0
 
 [node name="Enemy_Melee" parent="Props" instance=ExtResource("4_cnd1v")]
-material = SubResource("ShaderMaterial_3v5ej")
+material = SubResource("ShaderMaterial_fnwg1")
 position = Vector2(131, -67)
 
 [node name="Enemy_Melee2" parent="Props" instance=ExtResource("4_cnd1v")]
-material = SubResource("ShaderMaterial_w8fke")
+material = SubResource("ShaderMaterial_imugv")
 position = Vector2(-67, -67)
 
 [node name="UI" parent="." instance=ExtResource("10_7sslc")]
@@ -1407,6 +1407,6 @@ position = Vector2(236, -229)
 position = Vector2(57, 34)
 
 [node name="Enemy_Ranged" parent="." instance=ExtResource("13_s27q5")]
-position = Vector2(-348, -12)
+position = Vector2(175, 78)
 
 [connection signal="health_depleated" from="Props/Player" to="." method="_on_player_health_depleated"]

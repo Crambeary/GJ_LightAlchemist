@@ -48,6 +48,7 @@ func _physics_process(delta: float) -> void:
 
         move_and_slide()
         
+        
 func die() -> void:
     animated_sprite_2d.play("death")
     $"sword direction".hide()
@@ -56,11 +57,13 @@ func die() -> void:
     set_collision_layer_value(1, false)
     $"sword direction/Sword".set_collision_layer_value(1, false)
 
+
 func take_damage(amount: int) -> void:
     health = health - amount
     flash_hit.play("hit")
     if health <= 0:
         die()
+
 
 func melee() -> void:
     # We only execute this when in range, but maybe it's worth confirming for safety?
