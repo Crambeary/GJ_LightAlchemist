@@ -1,0 +1,168 @@
+[gd_scene load_steps=9 format=3 uid="uid://jrjt14m62y47"]
+
+[ext_resource type="Script" path="res://addons/scripts/main_menu.gd" id="1_7alg2"]
+[ext_resource type="FontFile" uid="uid://702kx0rv8cux" path="res://addons/fonts/antiquity-print.ttf" id="2_tljiv"]
+
+[sub_resource type="Animation" id="Animation_4txn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lldh1"]
+resource_name = "float_title"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Title:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 33)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_baoyx"]
+_data = {
+"RESET": SubResource("Animation_4txn7"),
+"float_title": SubResource("Animation_lldh1")
+}
+
+[sub_resource type="Animation" id="Animation_o43w8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartTransition/CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vi8xb"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartTransition/CanvasModulate:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_game"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bl2xw"]
+_data = {
+"RESET": SubResource("Animation_o43w8"),
+"fade_to_black": SubResource("Animation_vi8xb")
+}
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7alg2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="floating label" type="AnimationPlayer" parent="."]
+root_node = NodePath("../VBoxContainer")
+libraries = {
+"": SubResource("AnimationLibrary_baoyx")
+}
+autoplay = "float_title"
+
+[node name="StartTransition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bl2xw")
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="StartTransition"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/Control"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_tljiv")
+theme_override_font_sizes/font_size = 32
+text = "The Light Alchemist"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "You enter the cave and slay the demon spawing the shadow creatures. 
+
+The cave shakes from inside. You rush to escape and leave it alive!
+
+The cave crumbles, going underground and leaving a wall that seems to never have been changed.
+
+Your home is safe, and you are the only story in the kingdom of these caves getting beaten.
+
+The king orders you to travel to the other towns and defeat their shadow goblin problem.
+
+
+Thank you for playing!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2

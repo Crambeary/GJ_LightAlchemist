@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var max_distance := 200
 @export var player_gap := 70
 @export var max_health := 4
-@export var ranged_distance := 120
+@export var ranged_distance := 180
 
 
 const SPEED = 40.0
