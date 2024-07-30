@@ -7,46 +7,46 @@ extends CharacterBody2D
 
 @export var Enemy_Projectile : PackedScene
 @export var max_distance := 200
-@export var health = 4
-@export var ranged_distance = 200
+@export var player_gap := 70
+@export var health := 4
+@export var ranged_distance := 200
 
 
-const SPEED = 50.0
+const SPEED = 40.0
+const MOVEMENT_TOLERANCE := 4.0
 var shoot_on_cooldown = false
 
-func getPlayer():
-	return Player
-
 func _physics_process(delta: float) -> void:
-	var direction := Vector2(0,0)
-	# Get player location relative to me
-	var EnemyToPlayer = Player.position - position
-	if EnemyToPlayer.length() < max_distance:
-		# We move on to the next step.
-		direction = EnemyToPlayer.normalized()
-	
-	if EnemyToPlayer.length() < ranged_distance && ranged_cooldown.is_stopped():
-		ranged()
-	
-	# TODO: Is there a pathfinding package I can use?
-	velocity = direction * SPEED
+    var direction := Vector2(0,0)
+    # Get player location relative to me
+    var EnemyToPlayer = Player.position - position
+    if EnemyToPlayer.length() < max_distance and EnemyToPlayer.length() > player_gap + MOVEMENT_TOLERANCE:
+        # We move on to the next step.
+        direction = EnemyToPlayer.normalized()
+    elif EnemyToPlayer.length() < player_gap - MOVEMENT_TOLERANCE:
+        direction = EnemyToPlayer.normalized().rotated(PI) #rotate the vector 180 deg
+    
+    if EnemyToPlayer.length() < ranged_distance && ranged_cooldown.is_stopped():
+        ranged()
+    
+    # TODO: Is there a pathfinding package I can use?
+    velocity = direction * SPEED
 
-	move_and_slide()
-	ranged_direction.look_at(Player.global_position)
+    move_and_slide()
+    ranged_direction.look_at(Player.global_position)
 
 func take_damage(amount: int) -> void:
-	health = health - amount
-	if health <= 0:
-		queue_free()
+    health = health - amount
+    if health <= 0:
+        queue_free()
 
 func ranged() -> void:
-	# Shoot at player for 2 damage
-	# We only execute this when in range, but maybe it's worth confirming for safety?
-	shoot()
-	ranged_cooldown.start()
+    # Shoot at player for 2 damage
+    # We only execute this when in range, but maybe it's worth confirming for safety?
+    shoot()
+    ranged_cooldown.start()
+    
 func shoot() -> void:
-	if not shoot_on_cooldown:
-		var b = Enemy_Projectile.instantiate()
-		owner.add_child(b)
-		b.transform = marker_2d.global_transform
-		shoot_on_cooldown = true
+    var b = Enemy_Projectile.instantiate()
+    owner.add_child(b)
+    b.transform = marker_2d.global_transform

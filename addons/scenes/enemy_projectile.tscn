@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnchs3o8jgkge"]
+[gd_scene load_steps=3 format=3 uid="uid://cwpobbda1s2cy"]
 
 [ext_resource type="Script" path="res://addons/scripts/enemy_projectile.gd" id="1_lk1fy"]
 
@@ -16,6 +16,5 @@ offset_left = -1.0
 offset_top = -1.0
 offset_right = 1.0
 offset_bottom = 1.0
-color = Color(0, 0, 0, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

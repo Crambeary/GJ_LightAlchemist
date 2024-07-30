@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cox1vquavydlh"]
+[gd_scene load_steps=5 format=3 uid="uid://dlmffcdsxun7y"]
 
 [ext_resource type="Script" path="res://addons/scripts/enemy_ranged.gd" id="1_gnj06"]
-[ext_resource type="PackedScene" uid="uid://bnchs3o8jgkge" path="res://addons/scenes/enemy_projectile.tscn" id="2_reudw"]
+[ext_resource type="PackedScene" uid="uid://cwpobbda1s2cy" path="res://addons/scenes/enemy_projectile.tscn" id="2_reudw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vofc"]
 height = 32.0
@@ -14,6 +14,7 @@ script = ExtResource("1_gnj06")
 Enemy_Projectile = ExtResource("2_reudw")
 
 [node name="Ranged Cooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1vofc")
