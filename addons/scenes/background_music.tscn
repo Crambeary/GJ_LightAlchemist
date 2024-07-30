@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://6e54n3k4epl1"]
+
+[ext_resource type="AudioStream" uid="uid://dwclt4lpqbkid" path="res://addons/sounds/DST-Afternoon.mp3" id="1_kc8ve"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_kc8ve")
+autoplay = true

@@ -137,6 +137,7 @@ theme_override_fonts/font = ExtResource("1_5n3mq")
 theme_override_font_sizes/font_size = 32
 text = "The Light Alchemist"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2

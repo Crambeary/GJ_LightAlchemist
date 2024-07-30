@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 var health := max_health
 var in_attack := false
-const SPEED = 50.0
+const SPEED := 50.0
 var is_dead := false
 
 
@@ -48,18 +48,22 @@ func _physics_process(delta: float) -> void:
 
         move_and_slide()
         
+        
 func die() -> void:
     animated_sprite_2d.play("death")
     $"sword direction".hide()
     $"sword direction/Sword/CollisionShape2D2".disabled = true
     is_dead = true
     set_collision_layer_value(1, false)
+    $"sword direction/Sword".set_collision_layer_value(1, false)
+
 
 func take_damage(amount: int) -> void:
     health = health - amount
     flash_hit.play("hit")
     if health <= 0:
         die()
+
 
 func melee() -> void:
     # We only execute this when in range, but maybe it's worth confirming for safety?
@@ -70,7 +74,7 @@ func melee() -> void:
     
     
 func _on_sword_area_entered(area: Area2D) -> void:
-    if area.is_in_group("player"):
+    if area.is_in_group("player") and not is_dead: # Check death so damage stops during death animation
         var body = area.get_parent()
         body.take_damage(melee_damage)
 
