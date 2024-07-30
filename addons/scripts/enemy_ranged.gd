@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
         
         
 func die() -> void:
+    z_index = -1
     animated_sprite_2d.play("death")
     $ranged_direction.hide()
     $ranged_direction/enemy_ranged_weapon/CollisionShape2D.disabled = true

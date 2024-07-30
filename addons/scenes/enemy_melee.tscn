@@ -148,6 +148,7 @@ _data = {
 
 [node name="Enemy_Melee" type="CharacterBody2D" groups=["mobs"]]
 y_sort_enabled = true
+position = Vector2(0, 1)
 script = ExtResource("1_gvscv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
