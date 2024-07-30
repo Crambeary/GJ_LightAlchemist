@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 [autoload]
 
 BackgroundMusic="*res://addons/scenes/background_music.tscn"
+Events="*res://addons/scenes/Events.tscn"
 
 [global_group]
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bavmlfih88tqn"]
+
+[ext_resource type="Script" path="res://addons/scenes/checkpoint.gd" id="1_qrsmo"]
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_qrsmo")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, -43, 97, -34, 97, 41, -105, 33, -103, -41)
+
+[node name="Spawn" type="Marker2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
