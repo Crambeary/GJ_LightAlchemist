@@ -9,12 +9,11 @@ extends CharacterBody2D
 @export var max_distance := 200
 @export var player_gap := 70
 @export var health := 4
-@export var ranged_distance := 200
+@export var ranged_distance := 120
 
 
 const SPEED = 40.0
 const MOVEMENT_TOLERANCE := 4.0
-var shoot_on_cooldown = false
 
 func _physics_process(delta: float) -> void:
     var direction := Vector2(0,0)
