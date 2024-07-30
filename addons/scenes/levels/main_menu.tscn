@@ -130,9 +130,8 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="VBoxContainer/Control"]
 layout_mode = 2
-offset_top = 33.0
 offset_right = 1152.0
-offset_bottom = 81.0
+offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("1_5n3mq")
 theme_override_font_sizes/font_size = 32
 text = "The Light Alchemist"
@@ -166,7 +165,6 @@ theme_override_constants/margin_top = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_5n3mq")
 text = "WASD - Move
 Mouse - Aim
 Mouse Click - Shoot
